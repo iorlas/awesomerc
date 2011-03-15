@@ -51,7 +51,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5 }, s, layouts[1])
 end
 -- }}}
 
@@ -307,16 +307,27 @@ awful.rules.rules = {
                      opacity = 1.0 } },
     { rule = { class = "MPlayer" },
       properties = { floating = true, ontop = true, sticky = true, callback = function(c)
-        --c_geom = c:geometry()
         --c:geometry({x=0, y=0})
       end } },
+
     { rule = { class = "gimp" },
       properties = { floating = false } },
     { rule = { class = "Sublime_text" },
       properties = { floating = false, tag = tags[1][2] } },
     { rule = { class = "Chromium-browser" },
       properties = { floating = false, tag = tags[1][1], maximized_horizontal = true, maximized_vertical = true } },
+    
+    { rule = { class = "Pidgin", name = "Buddy List" },
+      properties = { floating = false, tag = tags[1][5], maximized_horizontal = true, maximized_vertical = true } },
+    { rule = { class = "Deadbeef" },
+      properties = { floating = false, tag = tags[1][5], maximized_horizontal = true, maximized_vertical = true } },
 
+    { rule = { class = "Pidgin", role = "conversation" },
+      properties = { floating = true, tag = tags[1][1] } },
+
+    { rule = { class = "Thunar" },
+      properties = { floating = false } },
+      
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
